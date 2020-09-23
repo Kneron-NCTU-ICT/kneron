@@ -1,0 +1,15 @@
+.idea/
+.vscode/
+venv/
+__pycache__/
+.gitmodules
+*.pdf
+*.pptx
+*.xlsx
+*.csv
+.aws/credentials
+*.log
+*.jpg
+my.py
+*.pth
+*.h5
