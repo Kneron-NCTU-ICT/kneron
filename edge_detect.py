@@ -3,6 +3,8 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
+img_size =28
+
 img = cv2.imread('35.png')
 
 edges = cv2.Canny(img,100,200)
@@ -20,6 +22,10 @@ detection = np.copy(mask_eroded_dilated)
 for cnt in cnts:
     x, y, w, h = cv2.boundingRect(cnt)
     cv2.rectangle(detection, (x, y), (x + w, y + h), (255, 0, 0), 5)  # blue
+    crop_img = detection[y:y + h, x:x + w]
+    resizedImg = cv2.resize(crop_img, (img_size, img_size))
+    cv2.imshow("crop resizedImg", resizedImg)
+    cv2.waitKey(20)
 
 
 
