@@ -1,11 +1,21 @@
 # -*- coding: utf-8 -*-
+"""
+Created on Fri Sep 26 06:00:07 2020
+@author: yuehchuan
+"""
+
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
+import getpass
 
 img_size =28
+USERNAME=getpass.getuser()
+saveImgDirPath = '/home/'+USERNAME+'/kneron/input/'
 
 img = cv2.imread('35.png')
+
+DataEntity=[]
 
 edges = cv2.Canny(img,100,200)
 blur = cv2.blur(edges,(5,5))
@@ -27,6 +37,16 @@ for cnt in cnts:
     cv2.imshow("crop resizedImg", resizedImg)
     cv2.waitKey(20)
 
+    filename = str(x)+'.png'
+    fullSaveImgPath=saveImgDirPath+filename
+
+    DataEntity.append((x,filename))
+    cv2.imwrite(fullSaveImgPath, resizedImg)
+
+
+
+
+#DataEntity= sorted(DataEntity.iteritems(), key=lambda d:d[1], reverse = True)
 
 
 plt.subplot(121),plt.imshow(img,cmap = 'gray')
